@@ -63,6 +63,50 @@ x=-1.49000 f(x)=-2.75010
 x=-1.50000 f(x)=-2.75000
 ```  
 算出最高點x為-1.5 但這個解只會是區域性的解  
-![image](https://github.com/timmy10289/pic/blob/main/a.jpg)  
+![image](https://github.com/timmy10289/pic/blob/main/b.jpg)  
  
- 
+ #二維爬山演算法  
+ 用-1 * ( x*x - 2*x + y*y + 2*y - 8 )  
+ ```
+ import random
+
+def hillClimbing(f, x, y, h=0.01):
+    while (True):
+        fxy = f(x, y)
+        print('x={0:.3f} y={1:.3f} f(x,y)={2:.3f}'.format(x, y, fxy))
+        if f(x+h, y) >= fxy:
+            x = x + h
+        elif f(x-h, y) >= fxy:
+            x = x - h
+        elif f(x, y+h) >= fxy:
+            y = y + h
+        elif f(x, y-h) >= fxy:
+            y = y - h
+        else:
+            break
+    return (x,y,fxy)
+
+def f(x, y):
+    return -1 * ( x*x - 2*x + y*y + 2*y - 8 )
+
+hillClimbing(f, 0, 0)
+```  
+# 結果  
+```
+x=1.000 y=-0.880 f(x,y)=9.986
+x=1.000 y=-0.890 f(x,y)=9.988
+x=1.000 y=-0.900 f(x,y)=9.990
+x=1.000 y=-0.910 f(x,y)=9.992
+x=1.000 y=-0.920 f(x,y)=9.994
+x=1.000 y=-0.930 f(x,y)=9.995
+x=1.000 y=-0.940 f(x,y)=9.996
+x=1.000 y=-0.950 f(x,y)=9.998
+x=1.000 y=-0.960 f(x,y)=9.998
+x=1.000 y=-0.970 f(x,y)=9.999
+x=1.000 y=-0.980 f(x,y)=10.000
+x=1.000 y=-0.990 f(x,y)=10.000
+x=1.000 y=-1.000 f(x,y)=10.000
+```  
+得到x=1 y=-1的解  
+![image](https://github.com/timmy10289/pic/blob/main/c.jpg)  
+
